@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-instance1:
-    runs-on: self-hosted
+    runs-on: [self-hosted, label-instance1]  # Targets the first runner with label-instance1
     steps:
       - uses: actions/checkout@v4
 
@@ -17,12 +17,12 @@ jobs:
         shell: powershell
         run: C:/PND/Visit/MAM/LightControl_StandaloneSUT/SUT/Run_Setup.bat
 
-      - name: Run first instance of CANoe4SWSE at SILKIT local host and port 8500 to test first instance of vECU
+      - name: Run first instance of CANoe4SWSE at SILKIT local host and port 8500
         shell: powershell
         run: C:/PND/Visit/MAM/LightControl_StandaloneSUT/CANoe_StandaloneSUT/run_final.ps1
 
   build-instance2:
-    runs-on: self-hosted
+    runs-on: [self-hosted, label-instance2]  # Targets the second runner with label-instance2
     steps:
       - uses: actions/checkout@v4
 
@@ -30,6 +30,6 @@ jobs:
         shell: powershell
         run: C:/PND/Visit/MAM/LightControl_StandaloneSUT_Instance2/SUT/Run_Setup.bat
 
-      - name: Run second instance of CANoe4SWSE at SILKIT local host and port 8501 to test Second instance of vECU
+      - name: Run second instance of CANoe4SWSE at SILKIT local host and port 8501
         shell: powershell
         run: C:/PND/Visit/MAM/LightControl_StandaloneSUT_Instance2/CANoe_StandaloneSUT/run_final.ps1
